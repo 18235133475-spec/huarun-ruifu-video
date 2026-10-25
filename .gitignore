@@ -1,0 +1,9 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+.cache/
+# 动画工程的数据、模型、配音放在 public/，不进仓库（开放部分见 资产库/，甲方衍生部分只在本机）
+动画工程/public/
+动画工程/out/

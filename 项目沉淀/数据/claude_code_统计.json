@@ -1,0 +1,215 @@
+{
+ "sessions": [
+  [
+   "80c57610-2be2-4c53-99a7-66ef4c8a9e86",
+   "10-16 22:18",
+   "10-23 21:35",
+   167.3,
+   20.0,
+   98
+  ],
+  [
+   "f76f265b-4f53-4715-8316-0cce68228be6",
+   "10-23 18:47",
+   "10-24 21:28",
+   26.7,
+   8.0,
+   27
+  ],
+  [
+   "f96c47a4-e9ce-48a7-bbb2-648268072032",
+   "10-16 22:18",
+   "10-20 21:58",
+   95.7,
+   5.1,
+   29
+  ],
+  [
+   "fbad874d-7cd2-4200-82cf-ebbcd4c56151",
+   "10-23 18:47",
+   "10-25 15:01",
+   44.2,
+   11.4,
+   43
+  ]
+ ],
+ "tokens": {
+  "claude-opus-5-5|主会话": {
+   "calls": 1918,
+   "input_tokens": 3910,
+   "output_tokens": 2493602,
+   "cache_creation_input_tokens": 22998011,
+   "cache_read_input_tokens": 1018078431,
+   "cw_5m": 0,
+   "cw_1h": 22999330
+  },
+  "<synthetic>|主会话": {
+   "calls": 6,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "cw_5m": 0,
+   "cw_1h": 0
+  },
+  "claude-opus-5-5|子智能体": {
+   "calls": 442,
+   "input_tokens": 884,
+   "output_tokens": 543226,
+   "cache_creation_input_tokens": 1594558,
+   "cache_read_input_tokens": 78609732,
+   "cw_5m": 1594558,
+   "cw_1h": 0
+  },
+  "<synthetic>|子智能体": {
+   "calls": 2,
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "cw_5m": 0,
+   "cw_1h": 0
+  }
+ },
+ "tools": [
+  [
+   "Bash",
+   1542
+  ],
+  [
+   "Read",
+   585
+  ],
+  [
+   "mcp__ccd_turn__update_plan",
+   271
+  ],
+  [
+   "mcp__ccd_turn__wrap_up",
+   114
+  ],
+  [
+   "Write",
+   113
+  ],
+  [
+   "WebSearch",
+   84
+  ],
+  [
+   "SendUserFile",
+   65
+  ],
+  [
+   "WebFetch",
+   44
+  ],
+  [
+   "Edit",
+   21
+  ],
+  [
+   "ToolSearch",
+   11
+  ],
+  [
+   "Skill",
+   5
+  ],
+  [
+   "Agent",
+   5
+  ],
+  [
+   "SubagentHandback",
+   5
+  ],
+  [
+   "mcp__Claude_Browser__browser_batch",
+   3
+  ],
+  [
+   "mcp__Claude_Browser__navigate",
+   2
+  ],
+  [
+   "mcp__Claude_Browser__preview_start",
+   2
+  ],
+  [
+   "SendMessage",
+   2
+  ],
+  [
+   "TaskStop",
+   2
+  ],
+  [
+   "mcp__ccd_directory__change_directory",
+   1
+  ],
+  [
+   "AskUserQuestion",
+   1
+  ],
+  [
+   "mcp__Claude_Browser__get_page_text",
+   1
+  ],
+  [
+   "mcp__Claude_Browser__computer",
+   1
+  ],
+  [
+   "mcp__Claude_Browser__tabs_create",
+   1
+  ],
+  [
+   "mcp__ccd_session_mgmt__list_events",
+   1
+  ]
+ ],
+ "agent_spawns": [
+  [
+   "2026-10-22T15:52:25.698Z",
+   "general-purpose",
+   "Satellite vegetation check for Changfeng",
+   "true"
+  ],
+  [
+   "2026-10-22T23:46:26.166Z",
+   "general-purpose",
+   "Identify buildings between parks",
+   "true"
+  ],
+  [
+   "2026-10-23T01:52:51.489Z",
+   "general-purpose",
+   "Model three Fen River bridges",
+   "true"
+  ],
+  [
+   "2026-10-23T01:53:12.598Z",
+   "general-purpose",
+   "Detail model of Heyuan park",
+   "true"
+  ],
+  [
+   "2026-10-24T11:45:39.119Z",
+   "general-purpose",
+   "O1 pilot modeling node 1",
+   "true"
+  ]
+ ],
+ "renders": {
+  "full_film_cmds": 14,
+  "clip_render_cmds": 42,
+  "still_cmds": 228,
+  "still_loop_cmds": 122
+ },
+ "span": [
+  "2026-10-16T22:18:48.628000+08:00",
+  "2026-10-25T15:01:45.889000+08:00"
+ ],
+ "active_total_h": 30.8
+}

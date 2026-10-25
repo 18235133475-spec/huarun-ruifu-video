@@ -1,0 +1,22 @@
+{
+  "name": "ruifu-animatic",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Animatic out/M1_动态分镜.mp4"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.1.2",
+    "@react-three/postprocessing": "3.0.4",
+    "@remotion/cli": "^4.0.537",
+    "@remotion/three": "^4.0.537",
+    "@types/react": "^19.1.2",
+    "@types/three": "^0.170.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "remotion": "^4.0.537",
+    "three": "^0.170.0",
+    "typescript": "^5.6.3"
+  }
+}
