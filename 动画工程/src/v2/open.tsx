@@ -7,7 +7,7 @@ import { CamSpec, LOOK, MAP_CAM, PAIR, V3, XZ, at, dirOf, lerpCam, makeCamera, t
 import { MapScene, MapState } from "./map";
 import { bake } from "./data";
 import { BuildingTag, Callout, CenterTitle, Footnote, N, P, Pin, RightTitle, SANS, SERIF } from "./theme";
-import { FPS, INTRO, kw, shotById } from "./timeline";
+import { FPS, INTRO, OPEN_Q, kw, shotById } from "./timeline";
 
 export const useT = () => useCurrentFrame() / FPS;
 export const pr = (t: number, a: number, d: number) => ease(clamp((t - a) / d));
@@ -73,7 +73,68 @@ export const Intro: React.FC = () => {
   const k = pr(t, 0.4, 1.4) * (1 - pr(t, INTRO - 0.8, 0.7));
   return (
     <AbsoluteFill style={{ background: BLACK }}>
-      <BookTitle k={k} />
+      {OPEN_Q ? null : <BookTitle k={k} />}
+    </AbsoluteFill>
+  );
+};
+
+// ---------- O0 新开头：黑幕闪出问句“好房子，一定要朝正南吗？”，再转到太原城区俯视，三句垫场（在北方看房先问朝南吗 / 正南正北是标准答案 / 采光好、好卖、不容易出错） ----------
+const CITY0: CamSpec = { t: [1650, 0, 1450], az: 180, el: 62, D: 24000, span: 2400, sy: 560 }; // 汾河东岸老城的成片住宅区：先不露出瑞府，也不提前露出晋阳湖
+const CITY1: CamSpec = { ...CITY0, t: [1600, 0, 1380], span: 1900 };
+export const O0: React.FC = () => {
+  const t = useT(), len = shotById("O0").len;
+  const tq = kw("O0", "好房子"), tn = kw("O0", "在北方看房"), ts = kw("O0", "朝南吗"), ta = kw("O0", "正南正北"), tb = kw("O0", "标准答案");
+  const t1 = kw("O0", "采光好"), t2 = kw("O0", "好卖"), t3 = kw("O0", "不容易出错");
+  const kQ = pr(t, tq - 0.1, 0.9) * (1 - pr(t, tn - 0.55, 0.3)); // 问句由虚到实浮现；问句念完（“吗”之后约 0.6 秒才接下一句）再淡出
+  const kBlack = 1 - pr(t, tn - 0.4, 0.6);          // 黑幕随后退去，地图在“在北方看房”时出来
+  const kOut = 1 - pr(t, len - 0.7, 0.5);            // 收尾：文字和指北针先退，再接 O1
+  const cam = lerpCam(CITY0, CITY1, pr(t, tn - 0.9, len - tn + 0.9));
+  const kN = pr(t, tn - 0.2, 0.5), kS = pr(t, ts - 0.2, 0.6), kA = pr(t, ta - 0.2, 0.7), kB = pr(t, tb - 0.3, 0.6);
+  const chip = (label: string, k: number) => (
+    <div style={{ display: "inline-block", marginRight: 18, padding: "10px 22px", background: "rgba(255,255,255,.94)", borderLeft: `4px solid ${P.hero}`, fontFamily: SANS, fontSize: 30, color: P.ink, boxShadow: "0 4px 14px rgba(60,45,30,.12)", opacity: k, transform: `translateY(${(1 - k) * 12}px)` }}>{label}</div>
+  );
+  const cx = 1660, cy = 300, R = 110; // 右上角指北针
+  const needle = (a: number, color: string) => (
+    <g transform={`rotate(${a} ${cx} ${cy})`}>
+      <path d={`M${cx},${cy - R + 22} L${cx + 11},${cy} L${cx},${cy + 18} L${cx - 11},${cy} Z`} fill={color} />
+    </g>
+  );
+  return (
+    <AbsoluteFill style={{ background: BLACK }}>
+      <MapShot spec={cam} st={{ hero: 0, facade: 0, turn: 0, ring: 0, time: t }}>
+        {() => (
+          <>
+            <AbsoluteFill style={{ opacity: kOut }}>
+            <AbsoluteFill style={{ background: `linear-gradient(90deg, rgba(243,240,234,.94) 0%, rgba(243,240,234,.82) 34%, rgba(243,240,234,0) 58%)` }} />
+            {/* 正南正北：一条贯穿画面的南北轴 */}
+            <svg style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080, opacity: kA }}>
+              <line x1={1180} y1={150 + (1 - kA) * 380} x2={1180} y2={930 - (1 - kA) * 380} stroke={P.hero} strokeWidth={3} strokeDasharray="14 10" />
+              <text x={1180} y={130} textAnchor="middle" fontFamily={SANS} fontSize={28} fill={P.ink2}>北</text>
+              <text x={1180} y={972} textAnchor="middle" fontFamily={SANS} fontSize={28} fontWeight={600} fill={P.hero}>南</text>
+            </svg>
+            <svg style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080, opacity: kS }}>
+              <circle cx={cx} cy={cy} r={R} fill="rgba(255,255,255,.9)" stroke={P.line} strokeWidth={2} />
+              {[["北", 0], ["东", 90], ["南", 180], ["西", 270]].map(([l, a]) => {
+                const [dx, dz] = dirOf(a as number);
+                return <text key={l as string} x={cx + dx * (R + 26)} y={cy + dz * (R + 26) + 10} textAnchor="middle" fontFamily={SANS} fontSize={26} fontWeight={l === "南" ? 600 : 400} fill={l === "南" ? P.hero : P.mute}>{l}</text>;
+              })}
+              {needle(180, P.hero)}
+              <circle cx={cx} cy={cy} r={7} fill={P.ink} />
+            </svg>
+            <div style={{ position: "absolute", left: 160, top: 250, fontFamily: SANS, fontSize: 32, letterSpacing: 4, color: P.ink2, opacity: kN }}>在北方看房，第一句问的是</div>
+            <div style={{ position: "absolute", left: 152, top: 310, fontFamily: SERIF, fontWeight: 900, fontSize: 124, letterSpacing: 8, color: P.ink, opacity: kS, transform: `translateY(${(1 - kS) * 16}px)` }}>朝南吗？</div>
+            <div style={{ position: "absolute", left: 160, top: 480, fontFamily: SANS, fontSize: 32, letterSpacing: 4, color: P.ink2, opacity: kB }}>正南正北，几乎是住宅的<span style={{ color: P.hero, fontWeight: 600 }}>标准答案</span></div>
+            <div style={{ position: "absolute", left: 160, top: 580, whiteSpace: "nowrap" }}>
+              {chip("采光好", pr(t, t1 - 0.2, 0.4))}{chip("好卖", pr(t, t2 - 0.2, 0.4))}{chip("最不容易出错", pr(t, t3 - 0.2, 0.4))}
+            </div>
+            </AbsoluteFill>
+          </>
+        )}
+      </MapShot>
+      {/* 黑幕问句 */}
+      <AbsoluteFill style={{ background: BLACK, opacity: kBlack, alignItems: "center", justifyContent: "center" }}>
+        <div style={{ fontFamily: SERIF, fontWeight: 900, fontSize: 96, letterSpacing: 10 + 8 * (1 - kQ), color: "#EFE6D6", opacity: kQ, filter: `blur(${(1 - kQ) * 8}px)` }}>好房子，一定要朝正南吗？</div>
+      </AbsoluteFill>
     </AbsoluteFill>
   );
 };
@@ -148,7 +209,8 @@ export const O2: React.FC = () => {
 // ---------- O3 南北朝向几乎是标准答案；为什么偏偏选择侧身？ ----------
 export const O3: React.FC = () => {
   const t = useT();
-  const kq = pr(t, kw("O3", "标准答案") - 0.4, 0.5), ks = pr(t, kw("O3", "为什么"), 1.2), kw2 = pr(t, kw("O3", "侧身") - 0.3, 0.5);
+  // 新开头版：“南北朝向是标准答案”已在开头讲过，O3 只剩“那么，华润的这两栋楼，为什么偏偏侧身”，大标题改成一行小字承接
+  const kq = OPEN_Q ? pr(t, 0.2, 0.6) : pr(t, kw("O3", "标准答案") - 0.4, 0.5), ks = pr(t, kw("O3", "为什么"), 1.2), kw2 = pr(t, kw("O3", "侧身") - 0.3, 0.5);
   const ang = 180 + 37.7 * ks;
   const cx = 1330, cy = 500, R = 210;
   const needle = (a: number, color: string, op: number) => (
@@ -158,10 +220,19 @@ export const O3: React.FC = () => {
   );
   return (
     <AbsoluteFill style={{ background: P.paper }}>
-      <div style={{ position: "absolute", left: 200, top: 260, fontFamily: SANS, color: P.ink2, fontSize: 30, letterSpacing: 4, opacity: pr(t, 0.3, 0.5) }}>在太原买房</div>
-      <div style={{ position: "absolute", left: 196, top: 320, fontFamily: SERIF, fontWeight: 900, color: P.ink, fontSize: 120, letterSpacing: 8, opacity: kq, transform: `translateY(${(1 - kq) * 16}px)` }}>南北朝向</div>
-      <div style={{ position: "absolute", left: 204, top: 480, fontFamily: SANS, color: P.ink2, fontSize: 30, letterSpacing: 4, opacity: kq }}>几乎是标准答案</div>
-      <div style={{ position: "absolute", left: 200, top: 580, fontFamily: SERIF, fontWeight: 900, color: P.hero, fontSize: 72, letterSpacing: 6, opacity: kw2 }}>为什么偏偏侧身？</div>
+      {OPEN_Q ? (
+        <>
+          <div style={{ position: "absolute", left: 200, top: 360, fontFamily: SANS, color: P.ink2, fontSize: 32, letterSpacing: 4, opacity: kq }}>正南正北是标准答案，华润的这两栋楼</div>
+          <div style={{ position: "absolute", left: 196, top: 430, fontFamily: SERIF, fontWeight: 900, color: P.hero, fontSize: 96, letterSpacing: 8, opacity: kw2, transform: `translateY(${(1 - kw2) * 16}px)` }}>为什么偏偏侧身？</div>
+        </>
+      ) : (
+        <>
+          <div style={{ position: "absolute", left: 200, top: 260, fontFamily: SANS, color: P.ink2, fontSize: 30, letterSpacing: 4, opacity: pr(t, 0.3, 0.5) }}>在太原买房</div>
+          <div style={{ position: "absolute", left: 196, top: 320, fontFamily: SERIF, fontWeight: 900, color: P.ink, fontSize: 120, letterSpacing: 8, opacity: kq, transform: `translateY(${(1 - kq) * 16}px)` }}>南北朝向</div>
+          <div style={{ position: "absolute", left: 204, top: 480, fontFamily: SANS, color: P.ink2, fontSize: 30, letterSpacing: 4, opacity: kq }}>几乎是标准答案</div>
+          <div style={{ position: "absolute", left: 200, top: 580, fontFamily: SERIF, fontWeight: 900, color: P.hero, fontSize: 72, letterSpacing: 6, opacity: kw2 }}>为什么偏偏侧身？</div>
+        </>
+      )}
       {/* 罗盘里淡淡一层瑞府最北端四栋楼的平面：3、4号楼正南正北，1、2号楼跟着指针一起转向西南 */}
       <svg style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080, opacity: 0.7 * pr(t, 0.2, 0.8) }}>
         {bake!.landmarks.ruifuRects.filter((r) => /^ruifu_b0[1-4]$/.test(r.n)).map((r) => {

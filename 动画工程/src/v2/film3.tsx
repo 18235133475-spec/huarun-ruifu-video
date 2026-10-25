@@ -3,7 +3,7 @@ import React from "react";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { clamp, ease } from "../lib";
 import { useReady } from "./data";
-import { Intro, O1, O2, O3, O7, O8 } from "./open";
+import { Intro, O0, O1, O2, O3, O7, O8 } from "./open";
 import { O4, O5 } from "./ch1";
 import { O5S } from "./sunshot";
 import { CHAPTER_CARDS } from "./chapters";
@@ -15,9 +15,9 @@ import { P, SANS } from "./theme";
 import { Captions, PaperCut, SlideAway, SlideIn, TurnIn } from "./transitions";
 import { getInputProps } from "remotion";
 const NO_CAPS = (getInputProps() as { noCaps?: boolean }).noCaps === true;
-import { EXITS_UP, FPS, INTRO, LEAD, SHOTS, SPLIT, Shot, TOTAL_FRAMES } from "./timeline";
+import { EXITS_UP, FPS, INTRO, LEAD, SHOTS, SPLIT, Shot, TOTAL_FRAMES, TRIM } from "./timeline";
 
-const VISUAL: Record<string, React.FC> = { O1, O2, O3, O4, O5, O5S, O7, O8, ...CHAPTER1B, ...CHAPTER_CARDS, ...UNIT_SHOTS, ...END_SHOTS };
+const VISUAL: Record<string, React.FC> = { O0, O1, O2, O3, O4, O5, O5S, O7, O8, ...CHAPTER1B, ...CHAPTER_CARDS, ...UNIT_SHOTS, ...END_SHOTS };
 /** 对照版：O5S 换成沙盘直观版，其余镜头相同；正片用图表版（太阳轨迹图 + 直射时段） */
 const ALT: Record<string, React.FC> = { O5S: O5SB };
 const Placeholder: React.FC<{ id: string }> = ({ id }) => (
@@ -69,7 +69,7 @@ const Film: React.FC<{ upto?: string; alt?: boolean }> = ({ upto, alt }) => {
               <Sequence durationInFrames={Math.round(SPLIT[s.id].at * FPS)}><Audio src={staticFile(`vo4/${s.id}.wav`)} /></Sequence>
               <Sequence from={Math.round((SPLIT[s.id].at + SPLIT[s.id].gap) * FPS)}><Audio src={staticFile(`vo4/${s.id}.wav`)} startFrom={Math.round(SPLIT[s.id].at * FPS)} /></Sequence>
             </>
-          ) : <Audio src={staticFile(`vo4/${s.id}.wav`)} />}
+          ) : <Audio src={staticFile(`vo4/${s.id}.wav`)} startFrom={Math.round((TRIM[s.id] ?? 0) * FPS)} />}
         </Sequence>
       ))}
       <Audio loop src={staticFile("music/piano.mp3")} volume={(fr) => clamp(fr / 45) * (fr < INTRO * FPS ? 0.24 : 0.15) * clamp((end + 30 - fr) / 45)} />

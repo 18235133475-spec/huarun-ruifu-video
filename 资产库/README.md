@@ -121,4 +121,4 @@ bash 资产库/_build.sh
 | `src/v2/sunshot.tsx` | 日照对比图表镜头 |
 | `src/world.tsx` | 城市、地形、水系、公园、五大馆、瑞府楼栋的加载与生长动画 |
 
-渲染开关：`--props='{"refine":true}'`（精细化模型）、`"refineUnit":true`（精细版户型）、`"noCaps":true`（去字幕，做文章动图用）。详见 [接手指南](../项目沉淀/05_接手指南.md)。
+渲染开关：`--props='{"refine":true}'`（精细化模型）、`"refineUnit":true`（精细版户型）、`"noCaps":true`（去字幕，做文章动图用）、`"openQ":false`（关掉黑幕问句新开头，回到 v11 时间轴）。详见 [接手指南](../项目沉淀/05_接手指南.md)。
