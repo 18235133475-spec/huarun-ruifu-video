@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-21",
+  "coordinate_system": {
+    "units": "m",
+    "coordinate_order": [
+      "x_east",
+      "z_south"
+    ],
+    "height_axis": "y_up",
+    "projection_epsg": 32649,
+    "origin_wgs84": [
+      112.52710185992406,
+      37.80698894451661
+    ],
+    "origin_utm_m": [
+      634430.0964288089,
+      4185498.7249752167
+    ],
+    "conversion": "x=E-E0; z=N0-N; all heights are relative Y"
+  },
+  "scope": "low-poly identifiable massing; no production light/camera/animation/texture",
+  "venues": [
+    {
+      "id": "venue_grand_theatre",
+      "official_name": "山西大剧院",
+      "file": "venues/venue_grand_theatre.glb",
+      "source_osm_id": "way/422861195",
+      "scene_anchor_m": [
+        -3.623249053955078,
+        0.0,
+        0.8433494567871094
+      ],
+      "platform_y_m": 0,
+      "axis": "+X east; +Y up; -Z north",
+      "placement": "instance.position = scene_anchor_m + [0, island_platform_y, 0]; no additional rotation",
+      "model_height_above_platform_m": 46.606143951416016,
+      "footprint_source": "city/venues.json; original map outline retained as plinth and roof outer envelope",
+      "reference_photo": "视频/素材/02_地标参考/山西大剧院/02_山西大剧院_45度角_01.jpg",
+      "reference_usage": "internal QA comparison only; not delivered as film source",
+      "height_and_shape": {
+        "shape": "continuous folded cantilever roof, deeply recessed hall glazing, two splayed stone jambs and open east-west portal",
+        "height_method": "section_proportion_measured_with_osm_length_calibration_estimated",
+        "height_estimated": true,
+        "measurements": {
+          "image": "山西大剧院/02_山西大剧院_图纸_纵剖面_01.jpg",
+          "image_size_px": [
+            2560,
+            1810
+          ],
+          "roof_top_px": [
+            690,
+            811
+          ],
+          "platform_baseline_px": [
+            1510,
+            1282
+          ],
+          "body_longitudinal_endpoints_px": [
+            [
+              295,
+              937
+            ],
+            [
+              2300,
+              997
+            ]
+          ],
+          "body_length_px": 2005,
+          "height_px": 471,
+          "map_length_m": 198.3977,
+          "height_formula": "map_length_m * 471 / 2005",
+          "scale_bar_0_px": [
+            2210,
+            1692
+          ],
+          "scale_bar_50_px": [
+            2450,
+            1692
+          ],
+          "scale_bar_direct_result_m": 98.125,
+          "scale_bar_conflict": "Graphic scale conflicts by approximately 2x with map length. Dimensions are section-proportion estimates calibrated to OSM, not printed design elevations.",
+          "secondary_reference_height_m": 54,
+          "secondary_reference_height_basis": "collected encyclopedia value; datum not documented; not used as model height"
+        },
+        "qa3_m1": {
+          "references": [
+            "图纸_纵剖面_01",
+            "图纸_爆炸轴测_01",
+            "图纸_手绘草图_01",
+            "图纸_横剖面_01",
+            "45度角_01",
+            "45度角_02",
+            "45度角_03",
+            "俯视卫星_01"
+          ],
+          "reference_front_azimuth": "west/northwest-facing reference camera; high northern hall appears on left in 45度角_01; satellite/north-up plan fixes compass orientation",
+          "portal_axis_scene": "east-west, +X / -X; opening span measured along Z (north/south)",
+          "portal_base_z_range_scene_m": [
+            -3.1246040000000193,
+            45.48283249999997
+          ],
+          "portal_head_z_range_scene_m": [
+            -13.044489000000013,
+            53.418740499999984
+          ],
+          "portal_base_clear_width_m": 48.6074365,
+          "portal_head_clear_width_m": 66.4632295,
+          "portal_centerline_soffit_height_m": 33.71794510897756,
+          "portal_plinth_y_m": 0.6,
+          "portal_centerline_net_height_m": 33.11794510897756,
+          "portal_full_depth_clear_height_verified_m": 25.0,
+          "portal_verified_scan_reference": "校验/theatre_m1_review.json",
+          "preview_camera_scene_xyz_m": [
+            -115.0,
+            3.2,
+            -45.0
+          ],
+          "preview_crop_local_z_m": [
+            -85.0,
+            42.0
+          ],
+          "roof_shell_thickness_assumed_m": 3.8,
+          "facade_recess_scale_assumed": 0.6,
+          "portal_shape_assumed": "splayed jambs, proportions read from section and photos; no measured door schedule supplied",
+          "splayed_jamb_lean_m": {
+            "north": 9.919885,
+            "south": 7.9359079999999995
+          },
+          "limitation": "Portal measurements and recess are schematic photo/section fits, not surveyed construction dimensions. Actual GLB ray-grid and same-side photo comparison are supplied."
+        }
+      },
+      "local_bounds_m": [
+        [
+          -50.77695083618164,
+          0.0,
+          -99.1988525390625
+        ],
+        [
+          50.77695083618164,
+          46.606143951416016,
+          99.1988525390625
+        ]
+      ],
+      "triangles": 532,
+      "sha256": "6111154a2ca4dd09e6113b6ecf00c972f4eff5868b772a177fea37a97d337531"
+    },
+    {
+      "id": "venue_library",
+      "official_name": "山西省图书馆（长风馆）",
+      "file": "venues/venue_library.glb",
+      "source_osm_id": "way/892698944",
+      "scene_anchor_m": [
+        32.2494010925293,
+        0.0,
+        -257.4386444091797
+      ],
+      "platform_y_m": 0,
+      "axis": "+X east; +Y up; -Z north",
+      "placement": "instance.position = scene_anchor_m + [0, island_platform_y, 0]; no additional rotation",
+      "model_height_above_platform_m": 34.0,
+      "footprint_source": "city/venues.json; original map outline retained as plinth and roof outer envelope",
+      "reference_photo": "视频/素材/02_地标参考/山西省图书馆/02_山西省图书馆_45度角_01.jpg",
+      "reference_usage": "internal QA comparison only; not delivered as film source",
+      "height_and_shape": {
+        "shape": "two book-stack wings, low connection, inset ribbon glass and vertical fin rhythm",
+        "height_method": "photo_proportion_estimate_no_elevation_or_scale",
+        "height_estimated": true,
+        "height_assumptions_m": {
+          "wing_1": 31.0,
+          "wing_2": 34.0,
+          "connection": 23.0
+        },
+        "reference": "山西省图书馆/02_山西省图书馆_45度角_01.jpg",
+        "limitation": "Wing partitions and heights are simplified estimates; no measured elevation or levels supplied."
+      },
+      "local_bounds_m": [
+        [
+          -64.947998046875,
+          0.0,
+          -80.98304748535156
+        ],
+        [
+          64.947998046875,
+          34.0,
+          80.98304748535156
+        ]
+      ],
+      "triangles": 4688,
+      "sha256": "7d917e63b6275cfc90d7c48a627b8e70a54c3fbf31a09e11d85d7d5329a13567"
+    },
+    {
+      "id": "venue_art_museum",
+      "official_name": "太原美术馆",
+      "file": "venues/venue_art_museum.glb",
+      "source_osm_id": "way/422861197",
+      "scene_anchor_m": [
+        243.78314971923828,
+        0.0,
+        -426.44895935058594
+      ],
+      "platform_y_m": 0,
+      "axis": "+X east; +Y up; -Z north",
+      "placement": "instance.position = scene_anchor_m + [0, island_platform_y, 0]; no additional rotation",
+      "model_height_above_platform_m": 28.36639976501465,
+      "footprint_source": "city/venues.json; original map outline retained as plinth and roof outer envelope",
+      "reference_photo": "视频/素材/02_地标参考/太原美术馆/02_太原美术馆_模型_01.jpg",
+      "reference_usage": "internal QA comparison only; not delivered as film source",
+      "height_and_shape": {
+        "shape": "folded angular plates and triangular courtyard opening, map footprint retained",
+        "height_method": "photo_and_scale_model_proportion_estimate",
+        "height_estimated": true,
+        "reference": "太原美术馆/02_太原美术馆_模型_01.jpg",
+        "limitation": "Roof fold heights and courtyard outline interpreted from model/satellite, not measured construction geometry."
+      },
+      "local_bounds_m": [
+        [
+          -93.20345306396484,
+          0.0,
+          -78.05995178222656
+        ],
+        [
+          93.20345306396484,
+          28.36639976501465,
+          78.05995178222656
+        ]
+      ],
+      "triangles": 486,
+      "sha256": "84eeb39de1fe9cb686a5d0f766b2e2d87d989d0505b729965868c59f9647dc3c"
+    },
+    {
+      "id": "venue_science_museum",
+      "official_name": "山西省科学技术馆",
+      "file": "venues/venue_science_museum.glb",
+      "source_osm_id": "way/179441838",
+      "scene_anchor_m": [
+        187.13839721679688,
+        0.0,
+        438.5532989501953
+      ],
+      "platform_y_m": 0,
+      "axis": "+X east; +Y up; -Z north",
+      "placement": "instance.position = scene_anchor_m + [0, island_platform_y, 0]; no additional rotation",
+      "model_height_above_platform_m": 22.25,
+      "footprint_source": "city/venues.json; original map outline retained as plinth and roof outer envelope",
+      "reference_photo": "视频/素材/02_地标参考/山西省科技馆/02_山西省科技馆_俯视卫星_01.jpg",
+      "reference_usage": "internal QA comparison only; not delivered as film source",
+      "height_and_shape": {
+        "shape": "four-level broad exhibition mass, lower polygonal head and central roof-light band",
+        "height_method": "four_levels_times_5_5m_plus_0_25m_roof_light_estimate",
+        "height_estimated": true,
+        "reference": "山西省科技馆/02_山西省科技馆_俯视卫星_01.jpg",
+        "limitation": "No facade photo/elevation supplied; levels=4 from collected key data, 5.5 m/storey and 0.25 m roof-light band are animation estimates."
+      },
+      "local_bounds_m": [
+        [
+          -71.89129638671875,
+          0.0,
+          -71.66178894042969
+        ],
+        [
+          71.89129638671875,
+          22.25,
+          71.66178894042969
+        ]
+      ],
+      "triangles": 48,
+      "sha256": "fb76f0b8b9918f6f6ddfbc0dd0653ce52b7b9ac4b93c304f680be743d17ae9b7"
+    },
+    {
+      "id": "venue_museum",
+      "official_name": "太原市博物馆（太原博物馆）",
+      "file": "venues/venue_museum.glb",
+      "source_osm_id": "way/422861196",
+      "scene_anchor_m": [
+        30.047550201416016,
+        0.0,
+        248.6510009765625
+      ],
+      "platform_y_m": 0,
+      "axis": "+X east; +Y up; -Z north",
+      "placement": "instance.position = scene_anchor_m + [0, island_platform_y, 0]; no additional rotation",
+      "model_height_above_platform_m": 36.0,
+      "footprint_source": "city/venues.json; original map outline retained as plinth and roof outer envelope",
+      "reference_photo": "视频/素材/02_地标参考/太原市博物馆/02_太原市博物馆_俯视卫星_01.jpg",
+      "reference_usage": "internal QA comparison only; not delivered as film source",
+      "height_and_shape": {
+        "shape": "five independently shaped oval flaring vessels along a north-west to south-east arc",
+        "height_method": "satellite_roof_proportion_estimate_no_facade_or_elevation",
+        "height_estimated": true,
+        "assumed_lobe_heights_m": [
+          36.0,
+          34.0,
+          32.0,
+          30.0,
+          29.0
+        ],
+        "lobe_centres_scene_xz_m": [
+          [
+            -16.5,
+            169.0
+          ],
+          [
+            -16.0,
+            215.0
+          ],
+          [
+            11.3,
+            261.7
+          ],
+          [
+            45.0,
+            291.5
+          ],
+          [
+            84.0,
+            321.0
+          ]
+        ],
+        "reference": "太原市博物馆/02_太原市博物馆_俯视卫星_01.jpg",
+        "limitation": "Only roof shape supported; taper and heights are estimates. Not Shanxi Museum / 山西博物院."
+      },
+      "local_bounds_m": [
+        [
+          -79.49154663085938,
+          0.0,
+          -102.08160400390625
+        ],
+        [
+          79.49154663085938,
+          36.0,
+          102.08160400390625
+        ]
+      ],
+      "triangles": 3524,
+      "sha256": "2f2c76227acfec4695882762c83c650e200e197df0354ea210a2fc89ec796b67"
+    }
+  ]
+}
